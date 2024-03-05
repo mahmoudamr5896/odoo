@@ -1,0 +1,56 @@
+<odoo>
+    <record id="ticket_tree_view" model="ir.ui.view">
+        <field name="name">ticket.tree.view</field>
+        <field name="model">ticket</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="number"/>
+                <field name="tag"/>
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ticket_form" model="ir.ui.view">
+        <field name="name">ticket.form</field>
+        <field name="model">ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="number"/>
+                        <field name="tag"/>
+                        <field name="state"/>
+                        <field name="file"/>
+                        <field name="assign_to"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ticket_tree_view" model="ir.actions.act_window">
+        <field name="name">Tickets</field>
+        <field name="res_model">ticket</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="ticket_tree_view"/>
+
+    </record>
+
+    <record id="action_ticket_form_view" model="ir.actions.act_window">
+        <field name="name">Ticket Form</field>
+        <field name="res_model">ticket</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_ticket_form"/>
+        <!-- Define other attributes such as domain, context, etc. if needed -->
+    </record>
+
+    <menuitem id="menu_todo_tickets" name="Todo" sequence="10"/>
+    <menuitem id="menu_tickets" name="Tickets" parent="menu_todo_tickets" sequence="10"/>
+    <menuitem id="menu_tickets_tree" name="All Tickets" parent="menu_tickets" action="action_ticket_tree_view" sequence="10"/>
+    <menuitem id="menu_tickets_form" name="Create Ticket" parent="menu_tickets" action="action_ticket_form_view" sequence="20"/>
+</odoo>

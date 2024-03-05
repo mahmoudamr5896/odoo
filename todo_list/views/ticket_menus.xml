@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="menu_todo_tickets" name="Todo" sequence="10"/>
+    <menuitem id="menu_tickets" name="Tickets" parent="menu_todo_tickets" sequence="10"/>
+    <menuitem id="menu_tickets_all" name="All Tickets" parent="menu_tickets" action="action_ticket_all" sequence="10"/>
+    <menuitem id="menu_tickets_my" name="My Tickets" parent="menu_tickets" action="action_ticket_my" sequence="20"/>
+</odoo>
