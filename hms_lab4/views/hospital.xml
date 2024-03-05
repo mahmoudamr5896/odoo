@@ -1,0 +1,107 @@
+<odoo>
+    <menuitem id="Hospital_4" name="Hospital_4"/>
+
+    <!-- Department Views -->
+    <record id="action_hms_department_list" model="ir.actions.act_window">
+        <field name="name">Departments List</field>
+        <field name="res_model">hms.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_hms_create_department" model="ir.actions.act_window">
+        <field name="name">Create Department</field>
+        <field name="res_model">hms.department</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Department Menu Items -->
+    <menuitem id="menu_hms_departments" name="Departments" parent="Hospital_4"/>
+    <menuitem id="menu_hms_departments_list" name="Departments List" parent="menu_hms_departments" action="action_hms_department_list"/>
+    <menuitem id="menu_hms_create_department" name="Create Department" parent="menu_hms_departments" action="action_hms_create_department"/>
+
+    <!-- Doctor Views -->
+    <record id="action_hms_doctors_list" model="ir.actions.act_window">
+        <field name="name">Doctors List</field>
+        <field name="res_model">hms.doctors</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_hms_create_doctors" model="ir.actions.act_window">
+        <field name="name">Create Doctor</field>
+        <field name="res_model">hms.doctors</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Doctor Menu Items -->
+    <menuitem id="menu_hms_doctors" name="Doctors" parent="Hospital_4"/>
+    <menuitem id="menu_hms_doctors_list" name="Doctors List" parent="menu_hms_doctors" action="action_hms_doctors_list"/>
+    <menuitem id="menu_hms_create_doctors" name="Create Doctor" parent="menu_hms_doctors" action="action_hms_create_doctors"/>
+
+    <!-- Patient Views -->
+    <record id="action_hms_patients_list" model="ir.actions.act_window">
+        <field name="name">Patients List</field>
+        <field name="res_model">hms.patients</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_hms_create_patient" model="ir.actions.act_window">
+        <field name="name">Create Patient</field>
+        <field name="res_model">hms.patients</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Patient Menu Items -->
+    <menuitem id="menu_hms_patients" name="Patients" parent="Hospital_4"/>
+    <menuitem id="menu_hms_patients_list" name="Patients List" parent="menu_hms_patients" action="action_hms_patients_list"/>
+    <menuitem id="menu_hms_create_patient" name="Create Patient" parent="menu_hms_patients" action="action_hms_create_patient"/>
+
+    <!-- Define the action for patient history -->
+    <record id="action_hms_patient_history" model="ir.actions.act_window">
+        <field name="name">Patient History</field>
+        <field name="res_model">hms.patient.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Patient History Menu Item -->
+    <menuitem id="menu_hms_patient_history" name="Patient History" parent="Hospital_4" action="action_hms_patient_history"/>
+
+    <!-- Report definition -->
+    <report id="report_patient_status" model="hms.patients" string="Patient Status Report" report_type="qweb-pdf" name="custom_module.report_patient_status" file="custom_module.report_patient_status"/>
+
+    <!-- Action to open the report -->
+    <record id="action_report_patient_status" model="ir.actions.report">
+        <field name="name">Patient Status Report</field>
+        <field name="type">ir.actions.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="model">hms.patients</field>
+        <field name="report_name">custom_module.report_patient_status</field>
+    </record>
+
+    <!-- Template for the report -->
+    <template id="report_patient_status">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <h2>Patient Status Report</h2>
+                    <ul>
+                        <li>Name: <span t-field="o.name"/></li>
+                        <li>Age: <span t-field="o.age"/></li>
+                        <li>Department: <span t-field="o.department_id.name"/></li>
+                        <li>Doctors:
+                            <span t-foreach="o.doctor_ids" t-as="doctor">
+                                <t t-if="doctor.name">
+                                    <span t-field="doctor.name"/>
+                                    <t t-if="not doctor._is_last"><span>,</span></t>
+                                </t>
+                            </span>
+                        </li>
+                        <li>Birth date: <span t-field="o.birth_date"/></li>
+                        <li>PCR: <span t-field="o.pcr"/></li>
+                        <li>Blood Type: <span t-field="o.blood_type"/></li>
+                        <li>Email: <span t-field="o.email"/></li>
+                    </ul>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
