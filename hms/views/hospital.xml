@@ -1,0 +1,75 @@
+<odoo>
+    <menuitem id="hospital"
+              name="Hospital"
+    >
+    </menuitem>
+    <!-- Department Views -->
+    <record id="action_hms_department_list" model="ir.actions.act_window">
+        <field name="name">Departments List</field>
+        <field name="res_model">hms.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_hms_create_department" model="ir.actions.act_window">
+        <field name="name">Create Department</field>
+        <field name="res_model">hms.department</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <!-- Department Menu Items -->
+    <menuitem id="menu_hms_departments" name="Departments"
+    parent="hospital"/>
+    <menuitem id="menu_hms_departments_list" name="Departments List"
+              parent="menu_hms_departments"
+              action="action_hms_department_list"
+    />
+    <menuitem id="menu_hms_create_department"
+              name="Create Department"
+              parent="menu_hms_departments"
+              action="action_hms_create_department"
+    />
+    <!-- Doctor Views -->
+    <record id="action_hms_doctors_list"
+            model="ir.actions.act_window"
+            >
+        <field name="name">Doctors List</field>
+        <field name="res_model">hms.doctors</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_hms_create_doctors" model="ir.actions.act_window">
+        <field name="name">Create Doctor</field>
+        <field name="res_model">hms.doctors</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <!-- Doctor Menu Items -->
+    <menuitem id="menu_hms_doctors"
+              name="Doctors"
+    parent="hospital"/>
+    <menuitem id="menu_hms_doctors_list" name="Doctors List" parent="menu_hms_doctors"
+              action="action_hms_doctors_list"
+    />
+    <menuitem id="menu_hms_create_doctors" name="Create Doctor" parent="menu_hms_doctors"
+              action="action_hms_create_doctors"
+    />
+    <record id="action_hms_patients_list" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">hms.patients</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_hms_create_patient" model="ir.actions.act_window">
+        <field name="name">Create Patient</field>
+        <field name="res_model">hms.patients</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <!-- Patient Menu Items -->
+    <menuitem id="menu_hms_patients"
+              parent="hospital"
+              name="Patient" />
+    <menuitem id="menu_hms_patients_list" name="List Patient" parent="menu_hms_patients"
+              action="action_hms_patients_list"
+    />
+    <menuitem id="menu_hms_create_patient" name="Create Patient" parent="menu_hms_patients"
+              action="action_hms_create_patient"
+    />
+</odoo>

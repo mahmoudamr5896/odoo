@@ -1,0 +1,13 @@
+<odoo>
+    <menuitem id="menu_doctors"
+              name="Doctors"
+    />
+    <menuitem id="menu_department"
+              name="Department"
+
+              />
+    <menuitem id="menu_department"
+              name="Patient"
+
+              />
+</odoo>
